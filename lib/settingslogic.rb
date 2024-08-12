@@ -104,7 +104,7 @@ class Settingslogic < Hash
                {}
              else
                payload = ERB.new(file_contents).result
-               (YAML.respond_to?(:unsafe_load) ? YAML.unsafe_load(payload) : YAML.load(payload)).to_hash
+               (YAML.respond_to?(:unsafe_load) ? YAML.unsafe_load(payload) : YAML.load(payload, aliases: true)).to_hash
              end
       if self.class.namespace
         hash = hash[self.class.namespace] or return missing_key("Missing setting '#{self.class.namespace}' in #{hash_or_file}")
